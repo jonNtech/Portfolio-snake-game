@@ -7,6 +7,7 @@ let newSegments = 0;
 
 
 export function update () {
+    addSegements();
     const inputDirection =  getInputDirection();
     for (let i = SNAKE_BODY.length - 2; i >= 0; i--) {
         SNAKE_BODY[i + 1] = {...SNAKE_BODY[i] };
@@ -24,5 +25,27 @@ export function draw (gameBoard) {
         snakeElement.style.gridColumnStart = segment.x;
         snakeElement.classList.add('snake');
         gameBoard.appendchild(snakeElement);
-    });
+    })
 };
+
+export function expandSnake(amount) {
+    newSegments += amount;
+}
+
+export function onSnake(position) {
+    return SNAKE_BODY.some(segment => {
+        return equalPositions(segment, position)
+    })
+}
+
+function equalPositions(pos1, pos2) {
+    return pos1.x === pos2.x && pos1.y === pos2.y;
+
+}
+
+function addSegements() {
+    for (let i = 0; i < newSegments; i++) {
+        SNAKE_BODY.push({... SNAKE_BODY[SNAKE_BODY.length - 1]  })
+    }
+    newSegments = 0;
+}

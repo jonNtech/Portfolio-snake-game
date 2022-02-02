@@ -1,4 +1,5 @@
 let inputDirection = { x : 0, y : 0};
+let lastInputDirection = { x : 0, y : 0};
 
 window.addEventListener('keyDown',e =>{
     switch (e.key) {
@@ -20,10 +21,10 @@ window.addEventListener('keyDown',e =>{
             break
         }
 
-} )
+} );
 
 export function getInputDirection() {
-    lastInputDirection = inputDirection;
+    lastInputDirection = inputDirection
     return inputDirection;
 
 };
